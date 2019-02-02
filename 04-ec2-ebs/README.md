@@ -1,7 +1,7 @@
-![image](https://github.com/lucas0x6b6f/terraform-aws/blob/master/04-ec2-ebs/image-1.png)
+![image](https://github.com/lucasko-tw/terraform-aws/blob/master/04-ec2-ebs/image-1.png)
 
 
-![image](https://github.com/lucas0x6b6f/terraform-aws/blob/master/04-ec2-ebs/image-2.png)
+![image](https://github.com/lucasko-tw/terraform-aws/blob/master/04-ec2-ebs/image-2.png)
 
 
 ## Volume
