@@ -1,11 +1,9 @@
-data "aws_vpc" "default" {
-  default = true
-}
 
 resource "aws_security_group" "my-sg" {
+
   name        = "allow_inbound"
   description = "Allow all inbound traffic"
-  vpc_id      = "${data.aws_vpc.default.id}"
+  vpc_id      = "${aws_vpc.foo.id}"
 
   ingress {
     from_port   = 0
@@ -21,17 +19,32 @@ resource "aws_security_group" "my-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
-    Name = "my-tag"
+
+ tags = {
+    Name = "my-tag" 
   }
 }
 
-resource "aws_instance" "my_instance" {
-  ami           = "ami-09f0b8b3e41191524"
-  instance_type = "t2.micro"
-  key_name      = "lucasko"
+resource "aws_instance" "my_instance"
+{
+
+  ami = "ami-0d063c6b"
+  instance_type="t2.micro"
+  key_name = "lucasko"
 
   vpc_security_group_ids = ["${aws_security_group.my-sg.id}"]
+  subnet_id = "${aws_subnet.alpha.id}"
+  provisioner "remote-exec" {
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      private_key = "${file("~/Downloads/lucasko.pem")}"
+    } 
 
-  // security_groups = ["my-tag"] 
+    
+  }
+
+
+
 }
+
